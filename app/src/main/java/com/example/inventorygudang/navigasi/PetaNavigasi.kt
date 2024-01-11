@@ -1,5 +1,7 @@
 package com.example.inventorygudang.navigasi
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -11,9 +13,28 @@ import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.example.inventorygudang.R
+import com.example.inventorygudang.login.AuthViewModel
+import com.example.inventorygudang.login.DestinasiHalamanLogin
+import com.example.inventorygudang.login.HalamanLogin
+import com.example.inventorygudang.ui.halaman.DestinasiEntry
+import com.example.inventorygudang.ui.halaman.DestinasiHalamanAwal
+import com.example.inventorygudang.ui.halaman.DestinasiHome
+import com.example.inventorygudang.ui.halaman.DetailsDestination
+import com.example.inventorygudang.ui.halaman.DetailsScreen
+import com.example.inventorygudang.ui.halaman.EntryBarangScreen
+import com.example.inventorygudang.ui.halaman.HalamanAwal
+import com.example.inventorygudang.ui.halaman.HomeScreen
+import com.example.inventorygudang.ui.halaman.ItemEditDestination
+import com.example.inventorygudang.ui.halaman.ItemEditScreen
+
+
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -38,4 +59,14 @@ fun BarangTopAppBar(
                 }
             }
         })
+}
+
+@RequiresApi(Build.VERSION_CODES.O)
+@Composable
+fun HostNavigasi(
+    navController: NavHostController,
+    modifier: Modifier = Modifier,
+    authViewModel: AuthViewModel = viewModel()
+) {
+
 }
