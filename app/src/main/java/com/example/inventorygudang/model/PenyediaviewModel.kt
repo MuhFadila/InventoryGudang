@@ -2,7 +2,9 @@ package com.example.inventorygudang.model
 
 import android.app.Application
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewmodel.CreationExtras
+import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.inventorygudang.AplikasiBarang
 
@@ -10,10 +12,40 @@ import com.example.inventorygudang.AplikasiBarang
 object PenyediaViewModel {
     val Factory = viewModelFactory {
 
+        initializer {
+            HomeViewModel(aplikasiBarang
+                ().container.repositoriBarang
+            )
+        }
 
+        initializer {
+            EntryViewModel(aplikasiBarang
+                ().container.repositoriBarang
+            )
+        }
+
+        initializer {
+            DetailsViewModel(
+                createSavedStateHandle(),
+                aplikasiBarang
+                    ().container.repositoriBarang
+                ,
+            )
+        }
+
+        initializer {
+            EditViewModel(
+                createSavedStateHandle(),
+                aplikasiBarang
+                    ().container.repositoriBarang
+                ,
+            )
+        }
 
     }
-}
+
+    }
+
 
 /**
  * Fungsi ekstensi query untuk objek [Application] dan mengembalikan sebuah instance dari
