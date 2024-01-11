@@ -31,4 +31,5 @@ Muhammad Fadila
 5. delete
 6. search
 
-![WhatsApp Image 2024-01-07 at 19 36 28](https://github.com/MuhFadila/InventoryGudang/assets/115222087/3ed79b24-9af8-42ea-a0bc-1c6a9f2d2e50)
+![WhatsApp Image 2024-01-11 at 22 21 09](https://github.com/MuhFadila/InventoryGudang/assets/115222087/c14b7393-b157-4409-8e82-8b586b799858)
+
