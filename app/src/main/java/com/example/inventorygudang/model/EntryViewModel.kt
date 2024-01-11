@@ -11,6 +11,28 @@ import com.example.inventorygudang.repositori.RepositoriBarang
 class EntryViewModel(private val repositoriBarang: RepositoriBarang): ViewModel() {
 
 
+    var uiStateBarang by mutableStateOf(UIStateBarang())
+        private set
+
+
+    /* Fungsi untuk memvalidasi input */
+    private fun validasiInput(uiState: DetailBarang = uiStateBarang.detailBarang ): Boolean {
+        return with(uiState) {
+            nama.isNotBlank() && kode.isNotBlank() && jumlah.isNotBlank() && harga.isNotBlank()
+        }
+    }
+
+    fun updateUiState(detailBarang: DetailBarang) {
+        uiStateBarang =
+            UIStateBarang(detailBarang = detailBarang, isEntryValid = validasiInput(detailBarang))
+    }
+
+    /* Fungsi untuk menyimpan data yang di-entry */
+    suspend fun saveBarang() {
+        if (validasiInput()) {
+            repositoriBarang.insertBarang(uiStateBarang.detailBarang.toBarang())
+        }
+    }
 
 }
 
