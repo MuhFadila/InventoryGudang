@@ -18,6 +18,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.inventorygudang.R
 import com.example.inventorygudang.login.AuthViewModel
@@ -36,6 +37,11 @@ import com.example.inventorygudang.ui.halaman.ItemEditScreen
 
 
 
+@RequiresApi(Build.VERSION_CODES.O)
+@Composable
+fun BarangApp(navController: NavHostController = rememberNavController()) {
+    HostNavigasi(navController = navController)
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
