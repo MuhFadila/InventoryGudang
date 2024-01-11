@@ -5,8 +5,12 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedButton
@@ -20,13 +24,84 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.example.inventorygudang.R
+import com.example.inventorygudang.model.DetailBarang
 import java.util.Calendar
 
+
+
+
+@RequiresApi(Build.VERSION_CODES.O)
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun FormInputBarang(
+    detailBarang: DetailBarang,
+    modifier: Modifier = Modifier,
+    onValueChange: (DetailBarang) -> Unit = {},
+    enabled: Boolean = true
+){
+
+    Column(
+        modifier = modifier,
+        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_medium))
+    ) {
+        DatePicker(
+            onDateSelected = { selectedDate ->
+                onValueChange(detailBarang.copy(tanggal = selectedDate))
+            },
+            modifier = Modifier.fillMaxWidth()
+        )
+        OutlinedTextField(
+            value = detailBarang.nama,
+            onValueChange = { onValueChange(detailBarang.copy(nama = it)) },
+            label = { Text(stringResource(R.string.nama)) },
+            modifier = Modifier.fillMaxWidth(),
+            enabled = enabled,
+            singleLine = true
+        )
+        OutlinedTextField(
+            value = detailBarang.kode,
+            onValueChange = { onValueChange(detailBarang.copy(kode = it)) },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            label = { Text(stringResource(R.string.kode)) },
+            modifier = Modifier.fillMaxWidth(),
+            enabled = enabled,
+            singleLine = true
+        )
+        OutlinedTextField(
+            value = detailBarang.jumlah,
+            onValueChange = { onValueChange(detailBarang.copy(jumlah = it)) },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            label = { Text(text = stringResource(R.string.jumlah)) },
+            modifier = Modifier.fillMaxWidth(),
+            enabled = enabled,
+            singleLine = true
+        )
+        OutlinedTextField(
+            value = detailBarang.harga,
+            onValueChange = { onValueChange(detailBarang.copy(harga = it)) },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            label = { Text(text = stringResource(R.string.harga)) },
+            modifier = Modifier.fillMaxWidth(),
+            enabled = enabled,
+            singleLine = true
+        )
+
+        if (enabled) {
+            Text(
+                text = stringResource(R.string.required_field),
+                modifier = Modifier.padding(start = dimensionResource(id = R.dimen.padding_medium))
+            )
+        }
+    }
+}
 
 
 @OptIn(ExperimentalMaterial3Api::class)
