@@ -1,10 +1,10 @@
-package com.example.inventorygudang
+package com.example.inventorygudang.model
 
 import android.app.Application
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.viewModelFactory
-
+import com.example.inventorygudang.AplikasiBarang
 
 
 object PenyediaViewModel {
